@@ -3,15 +3,25 @@ library hello;
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
-  final Route route;
+  final Route pushAndRemoveUntilRoute;
+  final Route pushReplacementRoute;
 
   const CustomButton({
-    required this.route,
+    required this.pushAndRemoveUntilRoute,
+    required this.pushReplacementRoute,
     Key? key,
   }) : super(key: key);
 
   void pushAndRemoveUntil(BuildContext context) {
-    Navigator.of(context).pushAndRemoveUntil(route, (route) => false);
+    Navigator.of(context).pushAndRemoveUntil(pushAndRemoveUntilRoute, (route) => false);
+  }
+
+  void popUntil(BuildContext context) {
+    Navigator.of(context).popUntil((route) => route.isFirst);
+  }
+
+  void pushReplacement(BuildContext context) {
+    Navigator.of(context).pushReplacement(pushReplacementRoute);
   }
 
   Widget btnPushAndRemoveUntil(BuildContext context) {
@@ -23,14 +33,14 @@ class CustomButton extends StatelessWidget {
 
   Widget btnPopUntil(BuildContext context) {
     return TextButton(
-      onPressed: () => pushAndRemoveUntil(context),
+      onPressed: () => popUntil(context),
       child: const Text("Pop Until"),
     );
   }
 
   Widget btnPushReplacement(BuildContext context) {
     return TextButton(
-      onPressed: () => pushAndRemoveUntil(context),
+      onPressed: () => pushReplacement(context),
       child: const Text("push replacement"),
     );
   }
