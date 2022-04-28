@@ -2,11 +2,11 @@ library hello;
 
 import 'package:flutter/material.dart';
 
-class CustomButton extends StatelessWidget {
+class NavigatorButton extends StatelessWidget {
   final Route pushAndRemoveUntilRoute;
   final Route pushReplacementRoute;
 
-  const CustomButton({
+  const NavigatorButton({
     required this.pushAndRemoveUntilRoute,
     required this.pushReplacementRoute,
     Key? key,
